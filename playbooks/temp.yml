@@ -1,0 +1,15 @@
+---
+- name: Transfer Host File
+  hosts: ALL
+  become: yes
+  tasks:
+
+    - name: Hostname
+      copy: src=/opt/init_os/files/{{ item }} dest=/etc/  mode=0777
+#      copy: src=/opt/init_os/files/{{ item }} dest=/etc/hosts mode=0777
+#      command: /sbin/shutdown -h now
+      with_items:
+        - "hosts"
+
+#    - name: Restart Service NTP
+#      service: name=ntpd state=restarted
